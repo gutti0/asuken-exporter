@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Asken Exporter",
+  "version": "0.1.0",
+  "description": "日ごとの栄養データを自動で json ファイルでDLします",
+  "permissions": [
+    "downloads", // ファイル保存
+    "activeTab", // 開いているタブへのアクセス
+    "scripting", // content script 挿入
+    "storage" // 将来の設定保存用
+  ],
+  "host_permissions": ["https://www.asken.jp/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.asken.jp/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
